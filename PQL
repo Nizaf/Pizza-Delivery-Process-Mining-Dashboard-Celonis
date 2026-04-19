@@ -1,0 +1,111 @@
+
+---
+
+**KPIs**
+
+```sql
+-- Total Revenue
+SUM("pizza_case_pizza_case"."REVENUE")
+
+-- Total Cost
+SUM("pizza_case_pizza_case"."COSTS")
+
+-- Gross Margin %
+(SUM("pizza_case_pizza_case"."REVENUE") - SUM("pizza_case_pizza_case"."COSTS"))
+/ SUM("pizza_case_pizza_case"."REVENUE")
+
+-- Avg Customer Satisfaction
+AVG("pizza_case_pizza_case"."CUSTOMER SATISFACTION")
+
+-- Total Orders
+COUNT_TABLE("pizza_case_pizza_case")
+
+-- Automation Rate
+SUM(CASE WHEN "pizza_event_pizzeria_event"."AUTOMATION" = 'A' THEN 1 ELSE 0 END)
+/ COUNT_TABLE("pizza_event_pizzeria_event")
+```
+
+---
+
+**Process Explorer**
+
+```sql
+-- Activity column
+"pizza_event_pizzeria_event"."ACTIVITY_EN"
+
+-- Timestamp column
+"pizza_event_pizzeria_event"."EVENTTIME"
+```
+
+---
+
+**Bar Chart — Revenue by Pizza Type**
+
+```sql
+-- Dimension
+"pizza_case_pizza_case"."PIZZA TYPE"
+
+-- Measure
+SUM("pizza_case_pizza_case"."REVENUE")
+```
+
+---
+
+**Bar Chart — Orders by Weekday**
+
+```sql
+-- Dimension
+"pizza_case_pizza_case"."WEEKDAY"
+
+-- Measure
+COUNT_TABLE("pizza_case_pizza_case")
+```
+
+---
+
+**Donut Chart — Orders by Customer Type**
+
+```sql
+-- Dimension
+"pizza_case_pizza_case"."CUSTOMER TYPE"
+
+-- Measure
+COUNT_TABLE("pizza_case_pizza_case")
+```
+
+---
+
+**Table — Channel Performance**
+
+```sql
+-- Column 1
+"pizza_case_pizza_case"."DISTRIBUTION CHANNEL"
+
+-- Column 2
+COUNT_TABLE("pizza_case_pizza_case")
+
+-- Column 3
+SUM("pizza_case_pizza_case"."REVENUE")
+
+-- Column 4
+SUM("pizza_case_pizza_case"."COSTS")
+
+-- Column 5
+AVG("pizza_case_pizza_case"."CUSTOMER SATISFACTION")
+
+-- Column 6 — Margin
+SUM("pizza_case_pizza_case"."REVENUE") - SUM("pizza_case_pizza_case"."COSTS")
+```
+
+---
+
+**Filters**
+
+```sql
+"pizza_case_pizza_case"."PIZZA TYPE"
+"pizza_case_pizza_case"."DISTRIBUTION CHANNEL"
+"pizza_case_pizza_case"."CUSTOMER LOCATION"
+"pizza_case_pizza_case"."PIZZA SIZE"
+```
+
+---
